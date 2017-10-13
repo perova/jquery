@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script
+	  src="https://code.jquery.com/jquery-3.2.1.js"
+	  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+	  crossorigin="anonymous"></script>
+	<title>Products</title>
+</head>
+<style>
+	table tr th {
+		border:1px solid black;
+		padding: 10px;
+		background-color: purple;
+		color:white;
+	}
+	table tr td {
+		border:1px solid black;
+		padding: 10px;
+	}
+</style>
+<body>
+
+		<button id="getit">Get It</button>
+		<table id="products">
+			<tr>
+			
+			    <th>Name</th>
+			    <th>Price</th>
+			    <th>Stock</th>
+  			</tr>
+  			
+			</table>	
+
+	<script>
+		
+	$(document).ready(function(){	
+
+		$("#getit").click(function(){
+	    $.getJSON("http://ca-php.lt/json/products.php", function(result){
+	       $.each(result, function(i, row){
+	       	console.log("row");
+	            $("#products").children().append("<tr><td>"+ row.name + "</td>"+"<td>"+ row.price + "</td>"+"<td>"+ row.stock + "</td></tr>");
+	        });
+	    });
+	});
+});
+
+</script>
+</body>
+</html>
+
+<!-- $.each(result, function(i, row){
+	            $("#products").append(field + " "); -->
